@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+docker login
+
+docker tag 'jeroenl/pimcore-mysql' 'jeroenl/pimcore-mysql:8.0'
+docker tag 'jeroenl/pimcore-redis' 'jeroenl/pimcore-redis:5.0'
+docker tag 'jeroenl/pimcore-httpd' 'jeroenl/pimcore-httpd:2.4'
+docker tag 'jeroenl/pimcore-php' 'jeroenl/pimcore-php:7.2'
+
+docker-compose push 'mysql' 'redis' 'php' 'httpd'

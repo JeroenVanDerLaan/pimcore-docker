@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+docker-compose down --rmi 'all' --volumes --remove-orphans
+
+docker-compose build --force-rm --no-cache --pull 'mysql'
+docker-compose build --force-rm --no-cache --pull 'redis'
+docker-compose build --force-rm --no-cache --pull 'httpd'
+docker-compose build --force-rm --no-cache --pull 'base-php'
+docker-compose build --force-rm --no-cache 'php'

@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+#mysql-poll || exit 1
+
+docker-php-entrypoint $@

@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+
+    mysql:
+        image: "jeroenl/pimcore-mysql"
+        build:
+            context: './mysql'
+
+    redis:
+        image: "jeroenl/pimcore-redis"
+        build:
+            context: './redis'
+
+    base-php:
+        image: "jeroenl/pimcore-php-base"
+        build:
+            context: './php'
+            dockerfile: 'base.Dockerfile'
+
+    php:
+        image: "jeroenl/pimcore-php"
+        build:
+            context: './php'
+
+    httpd:
+        image: "jeroenl/pimcore-httpd"
+        build:
+            context: './httpd'

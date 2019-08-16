@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+
+[ -n "$1" ] && MYSQL_USER="$1"
+[ -n "$2" ] && MYSQL_PASSWORD="$2"
+[ -n "$3" ] && MYSQL_HOST="$3"
+[ -n "$4" ] && MYSQL_PORT="$4"
+[ -n "$5" ] && MYSQL_DATABASE="$5"
+[ -z "$MYSQL_HOST" ] && MYSQL_HOST="mysql"
+[ -z "$MYSQL_PORT" ] && MYSQL_PORT=3306
+[ -z "$MYSQL_USER" ] && MYSQL_USER="admin"
+[ -z "$MYSQL_PASSWORD" ] && MYSQL_PASSWORD="admin"
+[ -z "$MYSQL_DATABASE" ] && MYSQL_DATABASE="pimcore"
+
+dsn="mysql://$MYSQL_USER@$MYSQL_HOST:$MYSQL_PORT"
+
+attempt=0
+limit=120
+while ! mysql -h"$MYSQL_HOST" -P"$MYSQL_PORT" -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" -e"SELECT 1" "$MYSQL_DATABASE" > /dev/null 2>&1; do
+    attempt=$(expr $attempt + 1)
+    if [ "$attempt" -ge "$limit" ]; then
+        echo "$dsn timed out" >&2
+        exit 1
+    fi
+    echo "$dsn is not available" >&2
+    sleep 1
+done
+echo "$dsn is available"
