@@ -1,5 +1,5 @@
 # Pimcore Docker
 
-[Docker Hub](https://cloud.docker.com/u/jeroenl/repository/list)
+[Docker Hub](https://hub.docker.com/u/jeroenl)
 
 WIP

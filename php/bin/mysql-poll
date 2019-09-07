@@ -21,7 +21,7 @@ while ! mysql -h"$MYSQL_HOST" -P"$MYSQL_PORT" -u"$MYSQL_USER" -p"$MYSQL_PASSWORD
         echo "$dsn timed out" >&2
         exit 1
     fi
-    echo "$dsn is not available" >&2
+    echo "$dsn is not yet available" >&2
     sleep 1
 done
 echo "$dsn is available"
